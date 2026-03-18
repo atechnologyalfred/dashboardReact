@@ -5,7 +5,8 @@ import { Link, useNavigate } from "react-router-dom"
 function DashboardLayout ({children}) {
     const navigate = useNavigate()
     const handleLogout = ()=> {
-    localStorage.removeItem('isLoggedIn', true);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     navigate('/login');
 }
     return (

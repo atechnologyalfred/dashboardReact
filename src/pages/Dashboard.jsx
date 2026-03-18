@@ -1,19 +1,19 @@
 import DashboardLayout from "../Layouts/DashboardLayout";
 function Dashboard (){
+
+        const getValues = JSON.parse(localStorage.getItem('user'));
+        console.log(getValues);
     return (
         <DashboardLayout>
             <div className="container-dashboard">
-            <h1>Welcome to your dashboard </h1>
+            <h1>Welcome: {getValues.name} </h1>
             <aside>
                 <div>
-                <span>avatar here</span>
+                <span>{getValues.email}</span>
                 </div>
                 <ul>
                     <li>Adjekota Alfred</li>
-                    <li>Adjekota Alfred</li>
-                    <li>Adjekota Alfred</li>
-                    <li>Adjekota Alfred</li>
-                    <li>Adjekota Alfred</li>
+
                 </ul>
             </aside>
             </div>

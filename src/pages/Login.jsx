@@ -7,20 +7,40 @@ import Navbar from "../Components/Navbar";
 import { useNavigate } from "react-router-dom";
 function Login () {
     const navigate = useNavigate();
-    const handleLogin = (e)=> {
+    const handleLogin = async (e)=> {
         e.preventDefault()
-        const getUser = JSON.parse(localStorage.getItem('isLoggedIn'));
         const formData = new FormData(e.target);
         const user = Object.fromEntries(formData);
-        if(user?.email === getUser?.email && user?.password === getUser?.password){
-            localStorage.setItem('isLoggedIn', true);
-            navigate('/dashboard');
-        } else {
-            alert("Please wrong email or password");
-            return;
-        }
-
         console.log(user);
+        try {
+            await login(user);
+            navigate('/dashboard');
+        } catch (error) {
+            // Error is already handled in login function
+        }
+    }
+    async function login (user){
+        try {
+            const res = await fetch("https://simple-crud-backend-6o49.onrender.com/api/v1/auth/login",{
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body : JSON.stringify(user)
+            });
+            if(!res.ok){
+                throw new Error("Login failed");
+            }
+            const data = await res.json();
+            console.log(data.token);
+            console.log(data.user.name);
+            alert("Login successful");
+            // Optionally store token or user data
+            localStorage.setItem('token', JSON.stringify( data.token));
+            localStorage.setItem('user', JSON.stringify( data.user));
+        } catch(err){
+            console.error(err);
+            alert("Login failed: " + err.message);
+        }
+        
     }
     return (
        <AuthLayout handleSubmit={handleLogin}>

@@ -1,4 +1,4 @@
-import Modal from "../pages/Modal.jsx";
+import Modal from "./Modal.jsx";
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from 'react-router-dom'

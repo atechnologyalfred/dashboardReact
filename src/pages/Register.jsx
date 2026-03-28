@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import Modal from './Modal.jsx';
+import Modal from '../Components/Modal.jsx';
 
 function Register() {
   const navigate = useNavigate()

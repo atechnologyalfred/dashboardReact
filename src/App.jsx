@@ -1,9 +1,9 @@
-import Home from './pages/Home.jsx';
+import Home from './pages/StudentLandingPage.jsx';
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login.jsx';
 import Register from "./pages/Register.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
-import ProtectedRoute from './pages/ProtectedRoute.jsx';
+import ProtectedRoute from './Components/ProtectedRoute.jsx';
 
 
 

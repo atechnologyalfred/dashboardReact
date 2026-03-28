@@ -1,59 +1,99 @@
-import Input from "../Components/Input";
-import Label from "../Components/Label";
-import Button from "../Components/Button";
-import AuthLayout from "../Layouts/AuthLayout";
-import { Link } from "react-router-dom";
-import Navbar from "../Components/Navbar";
-import { useNavigate } from "react-router-dom";
-function Login () {
-    const navigate = useNavigate();
-    const handleLogin = async (e)=> {
-        e.preventDefault()
-        const formData = new FormData(e.target);
-        const user = Object.fromEntries(formData);
-        console.log(user);
-        try {
-            await login(user);
-            navigate('/dashboard');
-        } catch (error) {
-            // Error is already handled in login function
-        }
+import { Link, useNavigate } from "react-router-dom";
+
+
+function Login() {
+  const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const payload = e.target;
+    const user = {email: payload.email.value, password:payload.password.value}
+    if(user?.email === "" || user.password === ""){
+      alert("email and password field required");
+      return;
     }
-    async function login (user){
-        try {
-            const res = await fetch("https://simple-crud-backend-6o49.onrender.com/api/v1/auth/login",{
-                method: 'POST',
-                headers: {"Content-Type": "application/json"},
-                body : JSON.stringify(user)
-            });
-            if(!res.ok){
-                throw new Error("Login failed");
-            }
-            const data = await res.json();
-            console.log(data.token);
-            console.log(data.user.name);
-            alert("Login successful");
-            // Optionally store token or user data
-            localStorage.setItem('token', JSON.stringify( data.token));
-            localStorage.setItem('user', JSON.stringify( data.user));
-        } catch(err){
-            console.error(err);
-            alert("Login failed: " + err.message);
-        }
-        
+    loginApi(user)
+  };
+
+  const loginApi = async (user)=> {
+    try {
+      const res = await fetch("https://simple-crud-backend-6o49.onrender.com/api/v1/auth/login",{
+        method: 'POST',
+        headers: { "Content-Type" : "application/json" },
+        body : JSON.stringify(user)
+      });
+      const data = await res.json()
+      
+      if(!res.ok){
+        alert(data.message);
+        return;
+      }
+      alert("Successful registration");
+      navigate("/dashboard");
+      localStorage.setItem('loginValues', JSON.stringify(data))
+      localStorage.setItem('token', JSON.stringify(data.token));
+    } catch(err){
+      console.error(err);
     }
-    return (
-       <AuthLayout handleSubmit={handleLogin}>
-         <Navbar>
-            <Link  to="/">Back</Link>
-            <Link  to="/register">Register</Link>
-        </Navbar>
-        <Label htmlFor="email">Email:</Label>
-        <Input  type="text" placeholder="enter your email" id="email"  name="email" />
-        <Label htmlFor="password">Password:</Label>
-        <Input  type="password" placeholder="enter your password"  id="password" name="password" />
-        <Button  btnText="Login" btnStyle="login-btn"/>
-        </AuthLayout>
-    )
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="bg-white p-10 rounded-2xl shadow-lg w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          Login to Your Account
+        </h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-gray-700 mb-1" htmlFor="email">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              // value={values.email}
+             
+              required
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 mb-1" htmlFor="password">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              // value={values.password}
+              name="password"
+             
+              required
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter your password"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition"
+          >
+            Login
+          </button>
+        </form>
+        <p className="mt-4 text-center text-sm text-gray-500">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-blue-600 hover:underline">
+            Register
+          </Link>
+        </p>
+        <p className="mt-4 text-center text-sm text-gray-500">
+          <Link to="/" className="text-blue-600 hover:underline">
+            ← Back to Home
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
 }
+
 export default Login;

@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import Modal from '../Components/Modal.jsx';
+import toast from "react-hot-toast";
 
 function Register() {
+
   const navigate = useNavigate()
   const modal = useRef()
   const handleSubmit = async (e) => {
@@ -14,7 +16,8 @@ function Register() {
     const confirmPassword = payload.confirmPassword.value;
 
     if(password !== confirmPassword) {
-      modal.current.open()
+      toast.dismiss(toastId);
+      modal.current.openModal();
       return;
     }
     const data = {name: fullname, email: email, password:password}
@@ -23,6 +26,7 @@ function Register() {
   };
   
   const registerApi =  async (user) =>{
+      const toastId = toast.loading("Registering...");
     try {
       const response = await fetch("https://simple-crud-backend-6o49.onrender.com/api/v1/auth/register",{
         method: 'POST',
@@ -31,15 +35,16 @@ function Register() {
       });
       const data = await response.json()
       if(!response.ok){
-        alert(data.message)
+        toast.error(data.message, { id: toastId });
         return;
       }
 
-        alert("User registered successfully");
+        toast.success("User registered successfully", { id: toastId });
         navigate("/login")
 
     }catch(err){
       console.error(err);
+      toast.error("An error occurred during registration.", { id: toastId });
     }
   }
 

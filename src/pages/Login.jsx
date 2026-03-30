@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import toast from 'react-hot-toast';
 
 function Login() {
   const navigate = useNavigate()
@@ -15,6 +15,7 @@ function Login() {
   };
 
   const loginApi = async (user)=> {
+    const toastId = toast.loading("Logging in...");
     try {
       const res = await fetch("https://simple-crud-backend-6o49.onrender.com/api/v1/auth/login",{
         method: 'POST',
@@ -22,17 +23,18 @@ function Login() {
         body : JSON.stringify(user)
       });
       const data = await res.json()
-      
+      toast.success("Login successful!", { id: toastId });
       if(!res.ok){
-        alert(data.message);
+        toast.error(data.message, { id: toastId });
         return;
       }
-      alert("Successful registration");
+      toast.success("Login successful!", { id: toastId });
       navigate("/dashboard");
       localStorage.setItem('loginValues', JSON.stringify(data))
       localStorage.setItem('token', JSON.stringify(data.token));
     } catch(err){
       console.error(err);
+      toast.error("An error occurred during login.", { id: toastId });
     }
   }
 

@@ -1,36 +1,26 @@
-import { createPortal } from "react-dom";
-import { forwardRef, useImperativeHandle, useRef } from "react";
 import { motion } from "framer-motion";
-const Modal = forwardRef(
 
-  ({ children, modalBtn, modalBtnStyle, dialogStyle }, ref) => {
-    const modal = useRef();
-    useImperativeHandle(ref, () => {
-      return {
-        open() {
-          modal.current.showModal();
-        },
-        close() {
-          modal.current.closeModal();
-        },
-      };
-    });
-    return createPortal(
-      <motion.dialog
-        initial={{x:1900, opacity: 0, scale:0.5 }}
-        animate={{ x: 30, opacity: 1, scale:1}}
-        transition ={{duration: 2}}
-        ref={modal}
-        className={dialogStyle}
+function Modal({ onClose, children }) {
+  return (
+    <motion.div
+      className="fixed inset-0 bg-black/50 flex items-center justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      {/* Modal Content */}
+      <motion.div
+        initial={{ scale: 0.7, y: 100 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.7, y: 100 }}
+        transition={{ duration: 0.3 }}
+        className="bg-white p-6 rounded-xl w-[90%] md:w-[500px]"
       >
-        <form method="dialog">
-          <button className={modalBtnStyle}>{modalBtn}</button>
-        </form>
+        <button onClick={onClose} className="mb-4">Close</button>
         {children}
-      </motion.dialog>,
-      document.getElementById("modal"),
-    );
-  },
-);
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default Modal;

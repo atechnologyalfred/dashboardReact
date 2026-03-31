@@ -1,12 +1,10 @@
-import React, { useRef } from "react";
+import  { useRef } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import Modal from '../Components/Modal.jsx';
 import toast from "react-hot-toast";
 
 function Register() {
-
+  
   const navigate = useNavigate()
-  const modal = useRef()
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = e.target;
@@ -14,10 +12,9 @@ function Register() {
     const email = payload.email.value;
     const password = payload.password.value;
     const confirmPassword = payload.confirmPassword.value;
-
+    
     if(password !== confirmPassword) {
-      toast.dismiss(toastId);
-      modal.current.openModal();
+      toast.error("Passwords do not match");
       return;
     }
     const data = {name: fullname, email: email, password:password}
@@ -26,7 +23,7 @@ function Register() {
   };
   
   const registerApi =  async (user) =>{
-      const toastId = toast.loading("Registering...");
+    const toastId = toast.loading("Registering user...");
     try {
       const response = await fetch("https://simple-crud-backend-6o49.onrender.com/api/v1/auth/register",{
         method: 'POST',
@@ -50,11 +47,7 @@ function Register() {
 
   return (
     <>
-    <Modal ref={modal} modalBtn="x" dialogStyle="
-    backdrop:bg-stone-900/60 inset-80 px-4 py-6">
-      <span className="text-center font-light ml-10 -mt-10 rounded-full bg-stone-300 p-4">OOPS !</span>
-      <p className="text-red-500 mt-4 text-red-700 uppercase">Password do not match</p>
-    </Modal>
+
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="bg-white p-10 rounded-2xl shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">

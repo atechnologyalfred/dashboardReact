@@ -1,37 +1,68 @@
 import Modal from "./Modal.jsx";
-import React, { useEffect, useState, useRef } from "react";
+import  { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from 'react-router-dom'
 
 
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-    const modal = useRef()
   const [open, setOpen] = useState(false);
-  const handleShowModal = ()=> {
-    setIsOpen(true)
-    modal.current.open()
-  }
+
+
+const [isOpen, setIsOpen] = useState(false);
+
+const handleShowModal = () => {
+  setIsOpen(true);
+};
+
+
   return (
     <>
-    {isOpen && (
-       <Modal ref={modal}
-     
-     modalBtn="Close" dialogStyle="
-             backdrop:bg-stone-900/60 pt-8 px-8 w-[60%] h-[70%] fixed inset-0
-        transform my-auto mx-auto bg-blue-100">
-        <h1 className="text-center font-bold text-blue-900 uppercase md:text-2xl mb-4">Welcome to studentHub.</h1>
-        <p className="text-center font-semibold mb-4">Fill the form below to have access to latest news from studentHub</p>
-        <form >
-          <label htmlFor="fulname">Fullname</label>
-          <input type="text" name="fullname" required className="border border-3 border-cyan-700 focus:outline-cyan-800 rounded mb-6 mt-2 w-[100%] md:w-100 p-2 block"/>
-          <label htmlFor="email">Email</label>
-          <input type="email" name="email"  required className="border border-3 border-cyan-700 focus:outline-cyan-800 rounded mb-6 mt-2 w-[100%] md:w-100 p-2 block"/>
-          <button className="border cursor-pointer hover:bg-blue-500 px-8 py-4 rounded-lg bg-blue-900 text-white ">Submit</button>
-        </form>
-      </Modal>
-    )}
+   
+   <AnimatePresence>
+  {isOpen && (
+
+    <Modal onClose={() => setIsOpen(false)} 
+  
+  modalBtn="Close"
+  dialogStyle="backdrop:bg-stone-900/60 pt-8 px-8 w-[90%] md:w-[60%] h-auto fixed inset-0 transform my-auto mx-auto bg-blue-100"
+>
+  <h1 className="text-center font-bold text-blue-900 uppercase md:text-2xl mb-4">
+    Welcome to studentHub.
+  </h1>
+
+  <p className="text-center font-semibold mb-4">
+    Fill the form below to have access to latest news from studentHub
+  </p>
+
+  <form>
+    <label htmlFor="fullname">Fullname</label>
+    <input
+      type="text"
+      name="fullname"
+      required
+      className="border-2 border-cyan-700 focus:outline-cyan-800 rounded mb-6 mt-2 w-full p-2 block"
+    />
+
+    <label htmlFor="email">Email</label>
+    <input
+      type="email"
+      name="email"
+      required
+      className="border-2 border-cyan-700 focus:outline-cyan-800 rounded mb-6 mt-2 w-full p-2 block"
+    />
+
+    <button className="border cursor-pointer hover:bg-blue-500 px-8 py-4 rounded-lg bg-blue-900 text-white">
+      Submit
+    </button>
+  </form>
+</Modal>
+
+
+  )}
+</AnimatePresence>
+
+  
     
     <nav className="w-full bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">

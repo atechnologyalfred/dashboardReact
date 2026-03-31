@@ -1,16 +1,95 @@
-# React + Vite
+<img width="1315" height="626" alt="image" src="https://github.com/user-attachments/assets/31b194a7-6738-41b1-8651-d1cfb8d11e7d" /># 📊 React Dashboard App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Description
 
-Currently, two official plugins are available:
+This is a modern dashboard application built with React that fetches and displays data from an external API.
+It provides users with a clean interface to view products, manage data, and interact with dynamic content.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* 📦 Fetch data from API
+* 📄 Product listing page
+* 🔍 View product details
+* 🔐 Login & Logout functionality
+* 📱 Responsive design
+* ⚡ Fast and dynamic UI
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+* React.js
+* Axios / Fetch API
+* React Router
+* Tailwind CSS / Bootstrap
+* Framer Motion (for animations)
+
+---
+
+## ⚙️ Installation
+
+1. Clone the repository
+
+```bash
+ https://github.com/atechnologyalfred/dashboardReact.git
+```
+
+2. Navigate into the project:
+
+```bash
+cd dashboardReact
+```
+
+3. Install dependencies:
+
+```bash
+npm install
+```
+
+4. Start the development server:
+
+```bash
+npm run dev
+```
+
+---
+
+## 📡 API Used
+
+This project uses data from:
+
+* https://fakestoreapi.com/products
+
+---
+
+## 📸 Screenshots
+
+(Add screenshots here)
+<img width="1315" height="626" alt="image" src="https://github.com/user-attachments/assets/aa6cd5c7-ccea-40aa-9e9a-74ffa34aac62" />
+
+---
+
+## 📂 Folder Structure
+
+```
+src/
+ ├── components/
+ ├── pages/
+ ├── Layout/
+ ├── assets/
+ ├── App.jsx
+ └── main.jsx
+```
+
+## 👤 Author
+
+ADJEKOTA ALFRED AKPEVWEOGHENE
+https://axial-student-dashboard-project.netlify.app/
+
+---
+
+## 💡 Notes
+
+This project is for learning and portfolio purposes.

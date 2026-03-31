@@ -64,7 +64,7 @@ const handleShowModal = () => {
 
   
     
-    <nav className="w-full bg-white shadow-md sticky top-0 z-50">
+    <nav className="w-full bg-white shadow-md sticky top-0 z-50"  >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold">S</div>
@@ -72,15 +72,15 @@ const handleShowModal = () => {
         </div>
 
         <ul className="hidden md:flex gap-8 font-medium text-gray-700">
-          <Link to="/" className=" hover:underline decoration-blue-700 decoration-xl underline-offset-4">Home</Link>
-          <li className="cursor-pointer hover:underline decoration-blue-700 decoration-xl underline-offset-4">About</li>
-          <li className="cursor-pointer hover:underline decoration-blue-700 decoration-xl underline-offset-4"><a href="#how-it-work"></a>Features</li>
-          <li className="cursor-pointer hover:underline decoration-blue-700 decoration-xl underline-offset-4" onClick={handleShowModal}>Contact</li>
+          <li className=" hover:underline decoration-blue-700 decoration-xl underline-offset-4 "><a href="#home">Home</a></li>
+          <li className="cursor-pointer hover:underline decoration-blue-700 decoration-xl underline-offset-4 " ><a href="#about">About</a></li>
+          <li className="cursor-pointer hover:underline decoration-blue-700 decoration-xl underline-offset-4 "><a href="#howitwork">Features</a></li>
+          <li className="cursor-pointer hover:underline decoration-blue-700 decoration-xl underline-offset-4 " onClick={handleShowModal}>Contact</li>
         </ul>
 
         <div className="hidden md:flex gap-4">
-         <Link to ="/login"> <button>Login</button></Link>
-         <Link to ="/register"><button className="bg-blue-600 text-white px-4 py-2 rounded-xl">Register</button></Link>
+         <Link to ="/login"> <button className="cursor-pointer">Login</button></Link>
+         <Link to ="/register"><button className="bg-blue-600 text-white px-4 py-2 rounded-xl cursor-pointer">Register</button></Link>
         </div>
 
         <button className="md:hidden" onClick={() => setOpen(!open)}>☰</button>

@@ -16,7 +16,7 @@ function Modal({ onClose, children }) {
         transition={{ duration: 0.3 }}
         className="bg-white p-6 rounded-xl w-[90%] md:w-[500px]"
       >
-        <button onClick={onClose} className="mb-4">Close</button>
+        <button onClick={onClose} className="mb-4 cursor-pointer">Close</button>
         {children}
       </motion.div>
     </motion.div>

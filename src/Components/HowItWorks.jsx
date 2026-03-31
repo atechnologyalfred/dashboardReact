@@ -8,7 +8,7 @@ function HowItWorks() {
   ];
 
   return (
-    <section className="py-16 bg-gray-50" id="how-it-work">
+    <section id="howitwork" className="py-16 bg-gray-50">
       <h2 className="text-3xl text-center font-bold mb-10">How It Works</h2>
       <div className="flex flex-col md:flex-row justify-center gap-10">
         {steps.map((step, i) => (

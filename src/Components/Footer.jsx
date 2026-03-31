@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-10">
+    <footer className="bg-gray-900 text-gray-300 py-10" id="about">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
         <div>
           <h3 className="text-white font-bold mb-2">StudentHub</h3>

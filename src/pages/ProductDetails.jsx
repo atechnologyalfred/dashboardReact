@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
+
 function ProductDetails() {
     const { id } = useParams();
     const [product, setProduct] = useState({});

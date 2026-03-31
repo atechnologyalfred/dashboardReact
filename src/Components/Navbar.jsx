@@ -1,7 +1,9 @@
 import Modal from "./Modal.jsx";
 import  { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import Label from "./Label.jsx";
+import Input from "./Input.jsx";
 
 
 
@@ -36,20 +38,18 @@ const handleShowModal = () => {
   </p>
 
   <form>
-    <label htmlFor="fullname">Fullname</label>
-    <input
+    <Label labelText="Full Name" htmlFor="fullname" />
+    <Input
       type="text"
       name="fullname"
       required
-      className="border-2 border-cyan-700 focus:outline-cyan-800 rounded mb-6 mt-2 w-full p-2 block"
     />
 
-    <label htmlFor="email">Email</label>
-    <input
+    <Label labelText="Email" htmlFor="email" />
+    <Input
       type="email"
       name="email"
       required
-      className="border-2 border-cyan-700 focus:outline-cyan-800 rounded mb-6 mt-2 w-full p-2 block"
     />
 
     <button className="border cursor-pointer hover:bg-blue-500 px-8 py-4 rounded-lg bg-blue-900 text-white">

@@ -1,42 +1,50 @@
 import { Link, useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
+import Label from "../Components/Label";
+import Input from "../Components/Input.jsx";
 
 function Login() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = e.target;
-    const user = {email: payload.email.value, password:payload.password.value}
-    if(user?.email === "" || user.password === ""){
+    const user = {
+      email: payload.email.value,
+      password: payload.password.value,
+    };
+    if (user?.email === "" || user.password === "") {
       alert("email and password field required");
       return;
     }
-    loginApi(user)
+    loginApi(user);
   };
 
-  const loginApi = async (user)=> {
+  const loginApi = async (user) => {
     const toastId = toast.loading("Logging in...");
     try {
-      const res = await fetch("https://simple-crud-backend-6o49.onrender.com/api/v1/auth/login",{
-        method: 'POST',
-        headers: { "Content-Type" : "application/json" },
-        body : JSON.stringify(user)
-      });
-      const data = await res.json()
+      const res = await fetch(
+        "https://simple-crud-backend-6o49.onrender.com/api/v1/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(user),
+        },
+      );
+      const data = await res.json();
       toast.success("Login successful!", { id: toastId });
-      if(!res.ok){
+      if (!res.ok) {
         toast.error(data.message, { id: toastId });
         return;
       }
       toast.success("Login successful!", { id: toastId });
       navigate("/dashboard");
-      localStorage.setItem('loginValues', JSON.stringify(data))
-      localStorage.setItem('token', JSON.stringify(data.token));
-    } catch(err){
+      localStorage.setItem("loginValues", JSON.stringify(data));
+      localStorage.setItem("token", JSON.stringify(data.token));
+    } catch (err) {
       console.error(err);
       toast.error("An error occurred during login.", { id: toastId });
     }
-  }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -46,32 +54,21 @@ function Login() {
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700 mb-1" htmlFor="email">
-              Email
-            </label>
-            <input
+            <Label labelText="Email" htmlFor="email" />
+            <Input
               type="email"
-              id="email"
               name="email"
-              // value={values.email}
-             
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your email"
             />
           </div>
+          <div></div>
           <div>
-            <label className="block text-gray-700 mb-1" htmlFor="password">
-              Password
-            </label>
-            <input
+            <Label labelText="Password" htmlFor="password" />
+            <Input
               type="password"
-              id="password"
-              // value={values.password}
               name="password"
-             
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your password"
             />
           </div>

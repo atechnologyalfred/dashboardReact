@@ -1,4 +1,5 @@
-import  { useRef } from "react";
+import Label from '../Components/Label.jsx';
+import Input from '../Components/Input.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from "react-hot-toast";
 
@@ -55,53 +56,43 @@ function Register() {
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-gray-700 mb-1" htmlFor="name">
-              Full Name
-            </label>
-            <input
+            <Label labelText="Full Name" htmlFor="name" />
+            <Input
               type="text"
               id="name"
               name="fullname"
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your full name"
             />
           </div>
           <div>
-            <label className="block text-gray-700 mb-1" htmlFor="email">
-              Email
-            </label>
-            <input
+            <Label labelText="Email" htmlFor="email" />
+            <Input
               type="email"
               id="email"
               name="email"
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your email"
             />
           </div>
           <div>
-            <label className="block text-gray-700 mb-1" htmlFor="password">
-              Password
-            </label>
-            <input
+            <Label labelText="Password" htmlFor="password" />
+            <Input
               type="password"
               id="password"
               name="password"
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your password"
             />
-            <label className="block text-gray-700 mb-1" htmlFor="confirmPassword">
-              Confirm Password
-            </label>
-            <input
+          </div>
+          <div>
+            <Label labelText="Confirm Password" htmlFor="confirmPassword" />
+            <Input
               type="password"
               id="confirmPassword"
               name="confirmPassword"
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your password"
+              placeholder="Confirm your password"
             />
           </div>
           <button
@@ -113,9 +104,9 @@ function Register() {
         </form>
         <p className="mt-4 text-center text-sm text-gray-500">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-600 hover:underline">
+          <Link to="/login" className="text-blue-600 hover:underline">
             Login
-          </a>
+          </Link>
         </p>
         <p className="mt-4 text-center text-sm text-gray-500">
           <Link to="/" className="text-blue-600 hover:underline">

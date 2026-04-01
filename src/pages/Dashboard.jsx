@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { FiMenu, FiHome, FiUser, FiLogOut } from "react-icons/fi";
+import { FiMenu, FiHome, FiLogOut } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
-import img1 from "../assets/img1.png";
+import img1 from "../assets/img1.jpg";
 function Dashboard() {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ function Dashboard() {
           {sidebarOpen && <span className="font-bold text-lg">Dashboard</span>}
           <button
             onClick={toggleSidebar}
-            className="p-1 rounded hover:bg-gray-200"
+            className="p-1 cursor-pointer rounded hover:bg-gray-200"
           >
             <FiMenu size={24} />
           </button>
@@ -75,7 +75,7 @@ function Dashboard() {
 
         {/* Menu */}
         <nav className="flex flex-col gap-2 px-2">
-          <p className="flex items-center gap-2 p-2 rounded hover:bg-gray-200">
+          <p className="flex items-center gap-2 p-2 rounded hover:bg-gray-200 cursor-pointer">
             <FiHome size={20} />
             {sidebarOpen && (
               <Link to="/">
@@ -87,7 +87,7 @@ function Dashboard() {
           <p
             to="/login"
             onClick={handleLogout}
-            className="flex items-center gap-2 p-2 rounded hover:bg-gray-200"
+            className="flex items-center gap-2 p-2 rounded hover:bg-gray-200 cursor-pointer"
           >
             <FiLogOut size={20} />
             {sidebarOpen && <span>Logout</span>}
